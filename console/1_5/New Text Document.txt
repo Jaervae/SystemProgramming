@@ -1,0 +1,9 @@
+What is main (UI) thread, why it must be responsive?
+	-UI thread on ns "pää säihke" joka on vastuussa kaikesta visuaalisesta mitä käyttäjä näkee. Tämän takia
+	olisi hyvä ettei se mene tukkoon jolloin vaikuttaa siltä että koko kone on tukossa.
+	
+What is difference of process and thread?
+	-Prosessi on yksi tehtävä joita threadit eli säikeet hallitsevat. Yksi säike pystyy suorittaa yhtä prosessia ja prosessorin ytimet ovat vastuussa näiden säikeitten hallitsemisesta.-
+
+Why Android system may stop processes suddenly?
+	.Jos laite kokee että muisti on vähissä tai kokee että tärkeämpi prosessi vaatii säijettä, niin se saattaa sammuttaa jonkun ja antaa "tärkeämmälle" säikeelle tilaa.
