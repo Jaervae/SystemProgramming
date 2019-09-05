@@ -1,6 +1,6 @@
 
 import java.util.Scanner;
-class ThreadsTest{
+class Threads{
 
     public static void main(String[] args) {
         ThreadsTest thread = new ThreadsTest();
