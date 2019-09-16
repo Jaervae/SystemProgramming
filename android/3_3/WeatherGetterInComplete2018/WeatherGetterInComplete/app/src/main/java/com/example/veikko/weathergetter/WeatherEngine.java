@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
-public class WeatherEngine /* implements HTTPGetThread.OnRequestDoneInterface */
+public class WeatherEngine  implements HTTPGetThread.OnRequestDoneInterface
 {
     // This interface is used to report data back to UI
     public interface WeatherDataAvailableInterface
@@ -48,11 +48,11 @@ public class WeatherEngine /* implements HTTPGetThread.OnRequestDoneInterface */
     public void getWeatherData(String city)
     {
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=65dbec3aae5e5bf9000c7a956c8b76f6";
-//        HTTPGetThread getter = new HTTPGetThread(url, this);
-//        getter.start();
+        HTTPGetThread getter = new HTTPGetThread(url, this);
+        getter.start();
     }
 
-    /*
+
     @Override
     public void onRequestDone(String data)
     {
@@ -70,6 +70,7 @@ public class WeatherEngine /* implements HTTPGetThread.OnRequestDoneInterface */
             Map<String, Object> weatherElement = array.get(0);
             iconId = (String)weatherElement.get("icon");
 
+            Log.d("tester", iconId.toString());
             uiCallback.weatherDataAvailable();
         }
         catch (Exception e)
@@ -77,5 +78,5 @@ public class WeatherEngine /* implements HTTPGetThread.OnRequestDoneInterface */
             e.printStackTrace();
         }
     }
-    */
+
 }

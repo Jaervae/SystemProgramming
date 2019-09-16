@@ -105,7 +105,7 @@ class TamagotchiFarm implements ThreadClass.TamagotchiThreadReporterInterface{
 				boolean allDied = true;
 				for ( int i = 0; i < tamagotchiAmmount ; i++)
 				{
-					if(list.get(i).getHungryState() >= 0){
+					if(list.get(i).getHungryState() >= 0 || list.get(i).getHungryState() > 20){
 						allDied = false;
 						break;
 					}			
@@ -131,6 +131,7 @@ class TamagotchiFarm implements ThreadClass.TamagotchiThreadReporterInterface{
 		System.out.println("\t GAME OVER");
 		System.out.println("");
 		System.out.println("");
+		System.exit(0); 
 	}
 	
 	
