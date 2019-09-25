@@ -1,5 +1,6 @@
 package com.example.veikko.weathergetter;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,12 +15,16 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, WeatherEngine.WeatherDataAvailableInterface {
 
     WeatherEngine engine = new WeatherEngine(this);
+    static final String SHARED_PREF_FILE = "WeatherApp";
+    static final String SHARED_PREF_EDITOR_CITY_KEY = "WeatherAppCityKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.button).setOnClickListener(this);
+
+
     }
 
     @Override
@@ -68,5 +73,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 updateUI();
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        EditText editText = (EditText)findViewById(R.id.editText);
+        String text = editText.getText().toString();
+        SharedPreferences sharedPreferences = getPref();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SHARED_PREF_EDITOR_CITY_KEY,text);
+        editor.commit();
+    }
+
+    protected SharedPreferences getPref() {
+        return getSharedPreferences(SHARED_PREF_FILE, MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        EditText editText = (EditText)findViewById(R.id.editText);
+        SharedPreferences sharedPreferences = getPref();
+        String savedText = sharedPreferences.getString(SHARED_PREF_EDITOR_CITY_KEY,null);
+        editText.setText(savedText);
     }
 }

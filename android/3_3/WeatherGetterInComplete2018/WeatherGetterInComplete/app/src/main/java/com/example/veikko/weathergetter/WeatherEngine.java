@@ -1,5 +1,6 @@
 package com.example.veikko.weathergetter;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -8,8 +9,12 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class WeatherEngine  implements HTTPGetThread.OnRequestDoneInterface
 {
+
+
     // This interface is used to report data back to UI
     public interface WeatherDataAvailableInterface
     {
@@ -78,5 +83,6 @@ public class WeatherEngine  implements HTTPGetThread.OnRequestDoneInterface
             e.printStackTrace();
         }
     }
+
 
 }
