@@ -1,4 +1,4 @@
-package com.example.annotationtest;
+package com.example.annotations;
 
 import org.junit.Test;
 
