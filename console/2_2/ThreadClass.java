@@ -47,7 +47,7 @@ public class ThreadClass extends Thread {
 	
 		
 		int id = callBackInterface.getOwnTamagotchi();
-		
+		 
 		ThreadClass obj = new ThreadClass(id,10,"Alive");
 
 		try {

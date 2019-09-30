@@ -1,7 +1,6 @@
 public class Status extends Thread{
 	
 	public interface ThreadReporterInterface {
-		void setListeners(Status status);
 		void interupted();
 		void progMade(Status status);
 	}
@@ -9,7 +8,7 @@ public class Status extends Thread{
 	public Status(ThreadReporterInterface cb){
 		callBackInterface = cb;
 	}
-	
+
 	ThreadReporterInterface callBackInterface = null;
 	
 	private int status;	
@@ -27,15 +26,14 @@ public class Status extends Thread{
 	
 	public void run(){
 		Status objStatus = new Status(0);
-		callBackInterface.setListeners(objStatus);
+		callBackInterface.progMade(objStatus);
 		try {
 			while (true) {	
-				sleep(3000);
+				sleep(500);
 				int t = objStatus.getStatus() + 10;
 				objStatus.setStatus(t);
 				callBackInterface.progMade(objStatus);
 				if ( t == 100 ){
-					System.out.println("On_Completed");
 					break;
 				}				
 			}
