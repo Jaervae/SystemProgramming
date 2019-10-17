@@ -36,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button button = null;
     private final String url = "https://api.flickr.com/services/feeds/photos_public.gne?nojsoncallback=?&format=json&tags=";
     private String searchedItem = "";
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
     ArrayList<String> listItems = new ArrayList<String>();
-    List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
     final private String TAG = "flickrappi";
 
     @Override
@@ -53,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listItems.clear();
                 searchedItem = editText.getText().toString();
                 String finalUrl = url + searchedItem;
                 sendRequest(finalUrl);
@@ -62,16 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendRequest(String aParam){
         //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
 
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, aParam, new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, aParam, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray items = jsonObject.getJSONArray("items");
-                    for(int i = 0; i < items.length(); i++){
+                    for (int i = 0; i < items.length(); i++) {
                         JSONObject c = items.getJSONObject(i);
                         JSONObject d = c.getJSONObject("media");
                         listItems.add(d.getString("m"));
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.i(TAG,"Error :" + error.toString());
+                Log.i(TAG, "Error :" + error.toString());
             }
         });
 

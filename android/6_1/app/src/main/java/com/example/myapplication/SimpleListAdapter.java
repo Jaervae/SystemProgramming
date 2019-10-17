@@ -26,7 +26,6 @@ class SimpleListAdapter extends ArrayAdapter {
 
         this.context = baseContext;
         this.imageUrls = listItems;
-
         inflater = LayoutInflater.from(baseContext);
     }
 

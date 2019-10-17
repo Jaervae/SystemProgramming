@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyArrayAdapter extends ArrayAdapter<ThreadClass>{
 
@@ -33,7 +32,6 @@ public class MyArrayAdapter extends ArrayAdapter<ThreadClass>{
     @Override
     public int getItemViewType(int position) {
         ThreadClass list = getItem(position);
-        Log.d("TEST", "getItemViewType"); //4
         if (list.getHungryState() < 0 || list.getHungryState() > 20){
 
             return VIEW_DEAD;
